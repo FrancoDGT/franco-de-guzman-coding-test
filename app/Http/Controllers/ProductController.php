@@ -61,33 +61,45 @@ class ProductController extends Controller
         }
     }
 
-    // Edit Product
-    public function edit($id)
+    // Update Product
+    public function update(Request $request, int $id)
     {
-        $product = Product::find($id);
-        if ($product) {
-            return response()->json($product, 200);
+        $validator = Validator::make($request->all(),
+        [
+            'name' => 'required|max:255',
+            'description' => 'required',
+            'price' => 'required|numeric|between:0,9999999.99'
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'status' => 422,
+                'errors' => $validator->messages()
+            ], 422);
         }
         else{
-            return response()->json([
-                'status' => '404',
-                'message' => 'Product not found'], 
-                404);
-        }
-    }
+            $product = Product::find($id);
 
-    // Update Product
-    public function update(Request $request, $id)
-    {
-        $product = Product::find($id);
-        if (!$product) {
-            return response()->json(['message' => 'Product not found'], 404);
+            if($product) {
+                $product->update([
+                    'name' => $request->name,
+                    'description' => $request->description,
+                    'price' => $request->price
+                ]);
+
+                return response()->json([
+                    'status' => 201,
+                    'message' => 'Product has been updated successfully'
+                ], 201);
+            }
+            else {
+                return response()->json([
+                    'status' => 404,
+                    'message' => 'Product not found'
+                ], 404);
+            }
+           
         }
-        $product->name = $request->input('name');
-        $product->description = $request->input('description');
-        $product->price = $request->input('price');
-        $product->save();
-        return response()->json($product);
     }
 
     // Delete Product
