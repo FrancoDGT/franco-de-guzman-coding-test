@@ -19,11 +19,7 @@
       </ul>
     </li>
     <li>
-      <a href="#getting-started">Getting started</a>
-      <ul>
-        <li><a href="#prerequisites">Prerequisites</a></li>
-        <li><a href="#installation">Installation</a></li>
-      </ul>
+        <a href="#instruction">Instructions</a>
     </li>
     <li>
       <a href="#bonus-points">Bonus points</a>
@@ -56,6 +52,33 @@ A product needs to have the following information:
 * Product price
 * Created at
 * Updated at
+
+<!-- INSTRUCTION -->
+## Instructions
+
+### Installation
+* Clone the repository.
+* Install Composer Dependencies
+    * <i>composer install</i> - This command will install all the PHP dependencies.
+* Run migration
+    * After cloning and installing dependencies, run the following command to create the necessary database tables:
+        * <i>php artisan migrate</i> - This command will execute the database migrations defined in my test project.
+### API Endpoints
+
+#### GET /products
+Retrieve the list of all products.
+
+#### GET /products/{id}
+Retrieve details of a specific product by its ID.
+
+#### POST /products
+Create a new product.
+
+#### PUT /products/update/{id}
+Update an existing product by its ID.
+
+#### DELETE /products/delete/{id}
+Delete a product by its ID.
 
 ### API requirements
 
