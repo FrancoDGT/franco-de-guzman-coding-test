@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\Models\Product;
-
+use Illuminate\Database\Console\Migrations\StatusCommand;
 
 class ProductController extends Controller
 {
@@ -107,9 +107,17 @@ class ProductController extends Controller
     {
         $product = Product::find($id);
         if (!$product) {
-            return response()->json(['message' => 'Product not found'], 404);
+            return response()->json([
+                'status' => 404,
+                'message' => 'Product not found'
+            ], 404);
         }
-        $product->delete();
-        return response()->json(['message' => 'Product deleted'], 200);
+        else {
+            $product->delete();
+            return response()->json([
+                'status' => 200,
+                'message' => 'Product deleted'
+            ], 200);
+        }
     }
 }
