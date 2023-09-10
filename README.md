@@ -19,11 +19,7 @@
       </ul>
     </li>
     <li>
-      <a href="#getting-started">Getting started</a>
-      <ul>
-        <li><a href="#prerequisites">Prerequisites</a></li>
-        <li><a href="#installation">Installation</a></li>
-      </ul>
+        <a href="#instruction">Instructions</a>
     </li>
     <li>
       <a href="#bonus-points">Bonus points</a>
@@ -56,6 +52,33 @@ A product needs to have the following information:
 * Product price
 * Created at
 * Updated at
+
+<!-- INSTRUCTION -->
+## Instructions
+
+### Installation
+* Clone the repository.
+* Install Composer Dependencies
+    * <i>composer install</i> - This command will install all the PHP dependencies.
+* Run migration
+    * After cloning and installing dependencies, run the following command to create the necessary database tables:
+        * <i>php artisan migrate</i> - This command will execute the database migrations defined in my test project.
+### API Endpoints
+
+#### GET /products
+Retrieve the list of all products.
+
+#### GET /products/{id}
+Retrieve details of a specific product by its ID.
+
+#### POST /products
+Create a new product.
+
+#### PUT /products/update/{id}
+Update an existing product by its ID.
+
+#### DELETE /products/delete/{id}
+Delete a product by its ID.
 
 ### API requirements
 
@@ -117,4 +140,4 @@ If automatically generating a new repository does not work, follow these steps i
 Q: The management requested a new feature where in the fictional e-commerce app must have a "featured products" section.
 How would you go about implementing this feature in the backend?
 
-A: In my very own raw knowledge, I would like to implement it in a way where I will add a new property in the model that will be named "featured" that will hold boolean values, and my preference for classifying an item to be featured is that it can be "newly added" or "most bought product". In the "newly added" condition, I would like to check the time it was created and the current time. If it does satisfy the condition, the property "featured" will have a value of "true" which will make it a featured item. For the "most bought product" condition I would like to add a new property in the model that will be named "sold" that will hold a value of how many times it will be bought by the customers and by that we can now compare the variable "sold" to the other products and I will only pick the top ten (10) products that will hold a "true" value for their each property "featured".
+A: In my very own raw knowledge, I would like to implement it in a way where I will add a new property in the model that will be named "featured" that will hold boolean values, and my preference for classifying an item to be featured is that it can be "newly added" or "most bought product". In the "newly added" condition, I would like to check the time it was created and the current time. If it does satisfy the condition, the property "featured" will have a value of "true" which will make it a featured item. For the "most bought product" condition I would like to add a new property in the model that will be named "sold" that will hold a value of how many times it will be bought by the customers and by that we can now compare the variable "sold" to the other products and I will only pick the top ten (10) products that will hold a "true" value for their each property "featured". 
